@@ -1,0 +1,7 @@
+                      {isTechAdmin && <span className="px-1.5 py-0.5 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 text-[9px] rounded-md border border-purple-200 dark:border-purple-800/50">مدير تقني</span>}
+                      {dist.isReadOnly && <span className="px-1.5 py-0.5 bg-indigo-100 dark:bg-rose-900/50 text-indigo-700 dark:text-indigo-300 text-[9px] rounded-md border border-rose-200 dark:border-rose-800/50">رؤية فقط</span>}
+                      {dist.subscriptionStatus === "منتهي" ? (
+                        <span className="px-1.5 py-0.5 bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 text-[9px] rounded-md border border-rose-200 dark:border-rose-800/50 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span> موقوف</span>
+                      ) : (
+                        <span className="px-1.5 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-[9px] rounded-md border border-emerald-200 dark:border-emerald-800/50 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> نشط</span>
+                      )}

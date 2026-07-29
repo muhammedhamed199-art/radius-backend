@@ -1,0 +1,145 @@
+            <form onSubmit={handleAddSubmit} className="p-6 space-y-4 overflow-y-auto flex-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">اسم العميل الثلاثي:</label>
+                  <input
+                    type="text"
+                    value={addName}
+                    onChange={(e) => setAddName(e.target.value)}
+                    placeholder="مثال: يوسف الدوسري"
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">اسم المستخدم للدخول (يمكن إضافة أكثر من اسم بفاصلة ,):</label>
+                  <input
+                    type="text"
+                    value={addUsername}
+                    onChange={(e) => setAddUsername(e.target.value)}
+                    placeholder="مثال: y_dosari"
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">كلمة المرور للدخول:</label>
+                  <input
+                    type="text"
+                    value={addPassword}
+                    onChange={(e) => setAddPassword(e.target.value)}
+                    placeholder="مثال: pass9908"
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">اسم مستخدم لوحة العميل (اختياري):</label>
+                  <input
+                    type="text"
+                    value={addPortalUsername}
+                    onChange={(e) => setAddPortalUsername(e.target.value.replace(/\s/g, ""))}
+                    placeholder="username_portal"
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">الرقم السري للوحة العميل (اختياري):</label>
+                  <input
+                    type="text"
+                    value={addPortalPassword}
+                    onChange={(e) => setAddPortalPassword(e.target.value)}
+                    placeholder="كلمة مرور اللوحة"
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">طريقة منح عنوان الـ IP:</label>
+                  <select
+                    value={addIpAssignmentType}
+                    onChange={(e) => {
+                      const val = e.target.value as "auto" | "manual";
+                      setAddIpAssignmentType(val);
+                      if (val === "auto") {
+                        setAddIpAddress("");
+                      }
+                    }}
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none"
+                  >
+                    <option value="auto">تلقائي (يولده السيرفر حسب الاتصال)</option>
+                    <option value="manual">يدوي (تحديد الـ IP بنفسك)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">عنوان الآي بي (يمكن إضافة أكثر من IP بفاصلة ,):</label>
+                  <input
+                    type="text"
+                    value={addIpAddress}
+                    onChange={(e) => setAddIpAddress(e.target.value)}
+                    disabled={addIpAssignmentType === "auto"}
+                    placeholder={addIpAssignmentType === "auto" ? "سيتم توليد الـ IP تلقائياً" : "مثال: 192.168.88.50"}
+                    className={`w-full p-2.5 border rounded-lg text-sm focus:outline-none font-mono ${
+                      addIpAssignmentType === "auto" 
+                        ? "bg-slate-100 dark:bg-slate-800 text-slate-400 cursor-not-allowed border-slate-200 dark:border-slate-700" 
+                        : "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 focus:ring-2 focus:ring-blue-500"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">طريقة الاتصال بالسيرفر:</label>
+                  <select
+                    value={addType}
+                    onChange={(e) => setAddType(e.target.value as ConnectionType)}
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none"
+                  >
+                    <option value={ConnectionType.PPPOE}>برودباند PPPoE</option>
+                    <option value={ConnectionType.HOTSPOT}>هوت سبوت</option>
+                    <option value={ConnectionType.MIXED}>متعدد (برودباند + هوت سبوت)</option>
+                    <option value={ConnectionType.MAC}>ماك ادريس (MAC Address)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">عدد الأجهزة المسموح بها في نفس الوقت:</label>
+                  <input
+                    type="number"
+                    min="1"
+                    value={addMaxConcurrentLogins}
+                    onChange={(e) => setAddMaxConcurrentLogins(parseInt(e.target.value) || 1)}
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">الباقة / العرض المخصص:</label>
+                  <select
+                    value={addOfferId}
+                    onChange={(e) => setAddOfferId(e.target.value)}
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none"
+                  >
+                    {offers.map(o => (
+                      <option key={o?.id} value={o?.id}>{o.name} ({o.speed})</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-xs font-bold text-slate-600 dark:text-slate-300 mb-1">المنطقة السكنية (العنوان):</label>
+                  <input
+                    type="text"
+                    value={addRegion}
+                    onChange={(e) => setAddRegion(e.target.value)}
+                    placeholder="مثال: حي الروضة"
+                    className="w-full p-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+              
+                </div>
+              </div>
+              
+              <div className="flex justify-end gap-3 mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
+                <button type="button" onClick={() => setShowAddModal(false)} className="px-5 py-2.5 rounded-xl font-bold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                  إلغاء
+                </button>
+                <button type="submit" className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold transition-all flex items-center gap-2">
+                  إضافة المشترك
+                </button>
+              </div>
+            </form>

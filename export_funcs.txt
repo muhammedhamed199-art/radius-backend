@@ -1,0 +1,35 @@
+  const exportExcel = () => {
+    const exportData = filteredDistributors.map(dist => ({
+      "الاسم": dist.name,
+      "اسم المستخدم": dist.username,
+      "رقم الهاتف": dist.phone || "-",
+      "الرصيد": dist.balance.toLocaleString(),
+      "العملة": dist.currency || defaultCurrency,
+      "عدد المشتركين": dist.customersCount,
+      "عدد المبيعات": dist.salesCount,
+      "الرتبة": dist.role === UserRole.TECHNICAL_ADMIN ? "مدير تقني" : dist.role === UserRole.ADMIN ? "مدير نظام" : "موزع",
+      "المنطقة": dist.region || "-",
+      "الدولة": dist.country || "الكل",
+      "حالة الاشتراك": dist.subscriptionStatus || "نشط",
+      "تاريخ الانتهاء": dist.subscriptionEndDate ? new Date(dist.subscriptionEndDate).toLocaleDateString('ar-SA') : "-"
+    }));
+    exportToExcel(exportData, `تصدير_الموزعين_${new Date().toISOString().split("T")[0]}`);
+  };
+
+  const exportCSV = () => {
+    const exportData = filteredDistributors.map(dist => ({
+      "الاسم": dist.name,
+      "اسم المستخدم": dist.username,
+      "رقم الهاتف": dist.phone || "-",
+      "الرصيد": dist.balance.toLocaleString(),
+      "العملة": dist.currency || defaultCurrency,
+      "عدد المشتركين": dist.customersCount,
+      "عدد المبيعات": dist.salesCount,
+      "الرتبة": dist.role === UserRole.TECHNICAL_ADMIN ? "مدير تقني" : dist.role === UserRole.ADMIN ? "مدير نظام" : "موزع",
+      "المنطقة": dist.region || "-",
+      "الدولة": dist.country || "الكل",
+      "حالة الاشتراك": dist.subscriptionStatus || "نشط",
+      "تاريخ الانتهاء": dist.subscriptionEndDate ? new Date(dist.subscriptionEndDate).toLocaleDateString('ar-SA') : "-"
+    }));
+    exportToCSV(exportData, `تصدير_الموزعين_${new Date().toISOString().split("T")[0]}`);
+  };

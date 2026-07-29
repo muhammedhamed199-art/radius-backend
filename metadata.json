@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix: لوحة تحكم ريديوس المتكاملة",
+  "description": "نظام شامل لإدارة شبكات الميكروتيك والتحكم في العملاء، الموزعين، الميكروتيك NAS، كروت الهوت سبوت، وأجهزة اليوبيكيتي، مع أداة فحص المشتركين وتذاكر الدعم الفني.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

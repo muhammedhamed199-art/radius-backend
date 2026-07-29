@@ -1,0 +1,7 @@
+                      {(!dist.role || dist.role === UserRole.DISTRIBUTOR) && <span className="px-1.5 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-[9px] rounded-md border border-emerald-200 dark:border-emerald-800/50">موزع</span>}
+                      {dist.subscriptionStatus === "منتهي" ? (
+                        <span className="px-1.5 py-0.5 bg-rose-100 dark:bg-rose-900/50 text-rose-700 dark:text-rose-300 text-[9px] rounded-md border border-rose-200 dark:border-rose-800/50 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span> موقوف</span>
+                      ) : (
+                        <span className="px-1.5 py-0.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-[9px] rounded-md border border-emerald-200 dark:border-emerald-800/50 flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> نشط</span>
+                      )}
+                      {dist.country && dist.country !== "الكل" && <span className="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-[9px] rounded-md border border-slate-200 dark:border-slate-700">{dist.country}</span>}

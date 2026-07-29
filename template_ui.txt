@@ -1,0 +1,61 @@
+            {selectedTemplate === "custom" ? (
+              <div className="space-y-3">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
+                  <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-300">
+                    نص الرسالة (المتغيرات المتاحة: {`{name}`}, {`{offer}`}, {`{expiryDate}`}, {`{debt}`}):
+                  </label>
+                  <div className="flex items-center gap-2">
+                    {savedTemplates.length > 0 && (
+                      <select 
+                        onChange={(e) => {
+                          const tmpl = savedTemplates.find(t => t.id === e.target.value);
+                          if (tmpl) setCustomMessageBody(tmpl.body);
+                        }}
+                        className="text-xs p-1.5 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg focus:outline-none text-slate-700 dark:text-slate-200"
+                        title="اختر قالب محفوظ"
+                      >
+                        <option value="">-- القوالب المحفوظة --</option>
+                        {savedTemplates.map(t => (
+                          <option key={t.id} value={t.id}>{t.name}</option>
+                        ))}
+                      </select>
+                    )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const name = window.prompt("أدخل اسم القالب لحفظه:", `قالب مخصص ${savedTemplates.length + 1}`);
+                        if (name) {
+                           const newTemplate = { id: `tmpl_${Date.now()}`, name, body: customMessageBody };
+                           const newTemplates = [...savedTemplates, newTemplate];
+                           setSavedTemplates(newTemplates);
+                           localStorage.setItem("savedMessageTemplates", JSON.stringify(newTemplates));
+                        }
+                      }}
+                      disabled={!customMessageBody}
+                      className="px-2 py-1.5 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 dark:bg-indigo-900/30 dark:text-indigo-400 rounded-lg text-[10px] font-bold transition-all disabled:opacity-50"
+                    >
+                      حفظ كقالب جديد
+                    </button>
+                    {savedTemplates.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                           if (window.confirm("هل أنت متأكد من مسح جميع القوالب المحفوظة؟")) {
+                             setSavedTemplates([]);
+                             localStorage.removeItem("savedMessageTemplates");
+                           }
+                        }}
+                        className="px-2 py-1.5 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-900/30 dark:text-rose-400 rounded-lg text-[10px] font-bold transition-all"
+                      >
+                        مسح الكل
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <textarea
+                  value={customMessageBody}
+                  onChange={(e) => setCustomMessageBody(e.target.value)}
+                  placeholder="أدخل نص الرسالة المخصصة هنا..."
+                  className="w-full h-28 p-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 leading-relaxed"
+                />
+              </div>

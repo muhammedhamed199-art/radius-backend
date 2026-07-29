@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Tajawal", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Global Dark Mode Defaults */
+html.dark {
+  background-color: #020617;
+  color-scheme: dark;
+}
+
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.5);
+}
+.dark ::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Table smooth horizontal scrolling and sticky header layout enhancements */
+.table-scroll-container {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-width: 100%;
+  max-height: 75vh;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+}
+
+/* Ensure table headers remain sticky on top when scrolling vertically */
+.table-scroll-container table thead,
+table.sticky-table thead,
+thead.sticky-thead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.table-scroll-container table thead th,
+table.sticky-table thead th,
+thead.sticky-thead th {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* Light & dark mode background for sticky table headers so content doesn't bleed through */
+table thead tr {
+  background-color: #f8fafc;
+}
+.dark table thead tr {
+  background-color: #0f172a;
+}
+
+table thead th {
+  background-color: inherit;
+}
+
+/* Print layout for Hotspot Cards */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-area, #print-area * {
+    visibility: visible;
+  }
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+/* NAS Server Card Container Query Styling */
+.nas-server-card {
+  container-type: size;
+  container-name: nas-card;
+}
+
+.nas-card-header {
+  min-height: 15cqi;
+  padding-left: 18cqi;
+}
+
+.nas-card-status-badge {
+  font-size: 3.8cqi;
+  padding: 1cqi 2.5cqi;
+}
+
+.nas-card-icon {
+  width: 7cqi;
+  height: 7cqi;
+}
+
+.nas-card-title {
+  font-size: 5cqi;
+}
+
+.nas-card-subtext {
+  font-size: 3.5cqi;
+}
+
+
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior-y: none;
+}

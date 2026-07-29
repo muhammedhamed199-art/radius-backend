@@ -1,0 +1,17 @@
+const fs = require('fs');
+let content = fs.readFileSync('src/components/SubscribersView.tsx', 'utf8');
+
+const oldBtns = `          <button onClick={exportPDF} className="px-3 py-2 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-900/30 dark:text-rose-400 rounded-xl font-bold text-[11px] md:text-xs transition-all flex items-center gap-1.5 border border-rose-200 dark:border-rose-800 shrink-0 whitespace-nowrap" title="تصدير إلى PDF">
+            <FileText className="w-3.5 h-3.5" /> <span>PDF</span>
+          </button>`;
+
+const newBtns = `          <button onClick={exportPDF} className="px-3 py-2 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:bg-rose-900/30 dark:text-rose-400 rounded-xl font-bold text-[11px] md:text-xs transition-all flex items-center gap-1.5 border border-rose-200 dark:border-rose-800 shrink-0 whitespace-nowrap" title="تصدير إلى PDF">
+            <FileText className="w-3.5 h-3.5" /> <span>PDF</span>
+          </button>
+          
+          <button onClick={exportCSV} className="px-3 py-2 bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400 rounded-xl font-bold text-[11px] md:text-xs transition-all flex items-center gap-1.5 border border-blue-200 dark:border-blue-800 shrink-0 whitespace-nowrap" title="تصدير إلى CSV">
+            <FileText className="w-3.5 h-3.5" /> <span>CSV</span>
+          </button>`;
+
+content = content.replace(oldBtns, newBtns);
+fs.writeFileSync('src/components/SubscribersView.tsx', content);

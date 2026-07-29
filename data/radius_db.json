@@ -1,0 +1,20 @@
+{
+  "lastUpdated": 1785199105654,
+  "data": {
+    "customers": [],
+    "deletedCustomers": [],
+    "distributors": [],
+    "devices": [],
+    "devices_ubnt": [],
+    "offers": [],
+    "cards": [],
+    "servers": [],
+    "tickets": [],
+    "distributorOffers": [],
+    "logs": [],
+    "financial_transactions": [],
+    "support_tickets": [],
+    "scheduled_tasks": [],
+    "scheduled_logs": []
+  }
+}
